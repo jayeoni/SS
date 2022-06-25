@@ -1,34 +1,21 @@
-import { TextField } from '@mui/material';
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+
 
 export const SavedPage = () => {
-    const [title, setTitle] = useState('');
-    const [date, setDate] = useState('');
-    const [video, setVideo] = useState('');
-    
+const [videos, setVideos] = useState([]);
+  const { push } = useHistory();
 
-    const videos = () => {
-        axios
-          .post('https://smart-sports.herokuapp.com/api/videos', {
-            data: {
-              title: title,
-              date: date,
-              video: video,
-            },
-          })
-          .then((response) => {
-            // Handle success.
-            console.log('Well done!');
-            replace('/');
-          })
-          .catch((error) => {
-            // Handle error.
-            console.log('An error occurred:', error.response);
-          });
-      };
-
+  useEffect(() => {
+    axios
+      .get('https://smart-sports.herokuapp.com/api/videos')
+      .then((res) => res.data.data)
+      .then((data) => {
+        console.log('data : ', data);
+        setVideos(data);
+      });
+  }, []);
     return (
         <div className='flex'>
             {/*<!-- component -->*/}
@@ -109,6 +96,9 @@ export const SavedPage = () => {
 
                     <div className="h-10 ml-16 mt-12 min-w-max text-2xl text-indigo-600">Workout Videos</div>
                     <div className='w-screen grid gap-4 grid-cols-4 overflow-y-scroll auto-rows-max p-16 min-w-max'>
+
+
+                        
 
                         <div className='w-64 rounded-lg border border-transparent p-2'>
                             <div className='text-indigo-300 text-right text-xs'>Mon 09 May</div>

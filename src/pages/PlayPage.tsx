@@ -9,6 +9,8 @@ interface PlayParams {
 export function PlayPage({ match }: RouteComponentProps<PlayParams>) {
 
     const { title, ratio } = match.params;
+
+    
     
     return (
         <div className="h-screen w-screen flex bg-gray-200">

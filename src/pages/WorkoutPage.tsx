@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+//import DateTimePicker from 'react-datetime-picker';
+
 
 import {
     RecordWebcam,
@@ -14,13 +17,34 @@ import "./styles.css";
 import { RouteComponentProps, useHistory, useParams } from 'react-router-dom';
 
 
-
 interface PlayParams {
     title: string;
     ratio: string;
 }
 
 export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
+    const [date, setDate] = useState(new Date());
+    const [video, setVideo] = useState('');
+
+    const videos = () => {
+        axios
+          .post('https://smart-sports.herokuapp.com/api/videos', {
+            data: {
+              title: title,
+              date: date,
+              video: video,
+            },
+          })
+          .then((response) => {
+            // Handle success.
+            console.log('Well done!');
+            push('/saved');
+          })
+          .catch((error) => {
+            // Handle error.
+            console.log('An error occurred:', error.response);
+          });
+      };
 
     const saveFile = async () => {
         const blob = await recordWebcam.getRecording();
@@ -262,17 +286,30 @@ export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
                         />
                     </button>
 
-                    <button className='h-6 flex flex justify-center items-center text-indigo-400
+                    {/* <button className='h-6 flex flex justify-center items-center text-indigo-400
 				                         focus:text-indigo-600 hover:bg-gray-300 focus:outline-none
                                  w-32 rounded-xl border border-indigo-400 p-2'
                         disabled={recordWebcam.status !== CAMERA_STATUS.PREVIEW}
                         onClick={getRecordingFileHooks}
                     >
                         Get recording
-                    </button>
+                    </button> */}
+
+                    
+
+                    {/* <div className="flex flex-col max-w-xl content-center w-full my-1 bg-white shadow-md rounded-lg mx-auto">
+                        <span className="text-black-600 text-sm mx-4 mt-4 ">마감</span>
+                        <div className="flex mt-1 relative rounded-md shadow-sm">
+                        <DateTimePicker
+                            onChange={onDueChange}
+                            value={due}
+                            className="mx-4 mb-4 w-full border-"
+                            calendarClassName="border-0 border-2"
+                        />
+                        </div>
+                    </div> */}
+
                 </div>
-
-
             </div>
 
 
@@ -295,8 +332,7 @@ export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
                     <video
                         ref={recordWebcam.previewRef}
                         style={{
-                            display: `${recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
-                                }`
+                            display: `${recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"}`
                         }}
                         //autoPlay
                         muted
@@ -305,15 +341,15 @@ export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
                     />
                 </div>
                 <div className="flex flex-row-reverse">
-                    {/* <button className="h-6 my-6 justify-center items-center text-gray-600
+                    <button className="h-6 my-6 justify-center items-center text-gray-600
 				                 text-sm focus:text-indigo-600 hover:bg-gray-300 focus:outline-none
                                  w-32 rounded-lg border border-gray-400 "
                         disabled={recordWebcam.status !== CAMERA_STATUS.PREVIEW}
-                        onClick={recordWebcam.download}>
+                        onClick={() => {recordWebcam.download(); videos()}}>
                         💾 Save Workout
-                    </button> */}
+                    </button>
 
-                        <button className="h-6 my-6 justify-center items-center text-gray-600
+                    {/* <button className="h-6 my-6 justify-center items-center text-gray-600
 				                 text-sm focus:text-indigo-600 hover:bg-gray-300 focus:outline-none
                                  w-32 rounded-lg border border-gray-400 "
                             disabled={recordWebcam.status !== CAMERA_STATUS.PREVIEW}
@@ -324,12 +360,11 @@ export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
                                   });
                             }}>
                             💾 Save Workout
-                        </button>
+                    </button> */}
                     {/* <button onClick={saveFile}>Save file to server</button> */}
                 </div>
             </div>
         </div>
-
     );
 };
 
