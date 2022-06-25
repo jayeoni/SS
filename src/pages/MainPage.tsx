@@ -43,27 +43,6 @@ export const MainPage = () => {
   const { replace } = useHistory();
   const [title, setTitle] = useState('');
   const [ratio, setRatio] = useState('');
-  // const start = () => {
-  //   axios
-  //     .post('http:///api/saved-workouts', {
-  //       username: name,
-  //       email: email,
-  //       password: pw,
-  //       phone: phone,
-  //     })
-  //     .then((response) => {
-  //       // Handle success.
-  //       console.log('Well done!');
-  //       console.log('User profile', response.data.user);
-  //       console.log('User token', response.data.jwt);
-  //       localStorage.setItem('token', response.data.jwt);
-  //       replace("/");
-  //     })
-  //     .catch((error) => {
-  //       // Handle error.
-  //       console.log('An error occurred:', error.response);
-  //     });
-  // }
 
   const [mark, setMark] = useState('');
 

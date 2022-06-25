@@ -19,7 +19,6 @@ export const LoginPage = () => {
       return;
     }
 
-
     axios
       .post('https://smart-sports.herokuapp.com/api/auth/local', {
         identifier: email,
