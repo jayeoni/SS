@@ -1,0 +1,17 @@
+.MuiSlider-track {
+    background-color: #a5b4fc !important;
+}
+
+.MuiSlider-mark {
+    background-color: #4f46e5 !important;
+
+}
+
+.MuiSlider-rail {
+    background-color: #a5b4fc !important;
+
+}
+
+.MuiSlider-thumb {
+    background-color: #4f46e5 !important;
+}
