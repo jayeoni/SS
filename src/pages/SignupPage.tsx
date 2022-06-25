@@ -15,7 +15,7 @@ export const SignupPage = () => {
 
   const register = () => {
     axios
-      .post('https://smart-sports.herokuapp.com/api/auth/local/register', {
+      .post('http://localhost:1337/api/auth/local/register', {
         username: name,
         email: email,
         password: pw,
