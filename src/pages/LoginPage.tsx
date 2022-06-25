@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-axios.get("http://localhost:1337/api/users").then((response) => {
+axios.get("https://smart-sports.herokuapp.com/api/users").then((response) => {
   console.log(response);
 })
 
@@ -20,10 +20,8 @@ export const LoginPage = () => {
     }
 
 
-
-
     axios
-      .post('http://localhost:1337/api/auth/local', {
+      .post('https://smart-sports.herokuapp.com/api/auth/local', {
         identifier: email,
         password: password,
       })
@@ -63,7 +61,7 @@ export const LoginPage = () => {
         <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">Brand</h2>
+              <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">SmartSports</h2>
 
               <p className="mt-3 text-gray-500 dark:text-gray-300">Sign in to access your account</p>
             </div>

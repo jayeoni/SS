@@ -1,6 +1,33 @@
-import React from 'react';
+import { TextField } from '@mui/material';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 export const SavedPage = () => {
+    const [title, setTitle] = useState('');
+    const [date, setDate] = useState('');
+    const [video, setVideo] = useState('');
+    
+
+    const videos = () => {
+        axios
+          .post('https://smart-sports.herokuapp.com/api/videos', {
+            data: {
+              title: title,
+              date: date,
+              video: video,
+            },
+          })
+          .then((response) => {
+            // Handle success.
+            console.log('Well done!');
+            replace('/');
+          })
+          .catch((error) => {
+            // Handle error.
+            console.log('An error occurred:', error.response);
+          });
+      };
 
     return (
         <div className='flex'>

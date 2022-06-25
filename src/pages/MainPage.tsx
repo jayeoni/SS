@@ -45,7 +45,7 @@ export const MainPage = () => {
   const [ratio, setRatio] = useState('');
   // const start = () => {
   //   axios
-  //     .post('http://localhost:1337/api/saved-workouts', {
+  //     .post('http:///api/saved-workouts', {
   //       username: name,
   //       email: email,
   //       password: pw,
