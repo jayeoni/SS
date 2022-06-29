@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
-axios.get("https://smart-sports.herokuapp.com/api/users").then((response) => {
+axios.get("https://smart--sports.herokuapp.com/api/users").then((response) => {
   console.log(response);
 })
 
@@ -20,7 +20,7 @@ export const LoginPage = () => {
     }
 
     axios
-      .post('https://smart-sports.herokuapp.com/api/auth/local', {
+      .post('https://smart--sports.herokuapp.com/api/auth/local', {
         identifier: email,
         password: password,
       })

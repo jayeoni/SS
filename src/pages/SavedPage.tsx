@@ -5,11 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 export const SavedPage = () => {
 const [videos, setVideos] = useState([]);
-  const { push } = useHistory();
+const { push } = useHistory();
 
   useEffect(() => {
     axios
-      .get('https://smart-sports.herokuapp.com/api/videos')
+      .get('https://smart--sports.herokuapp.com/api/videos')
       .then((res) => res.data.data)
       .then((data) => {
         console.log('data : ', data);

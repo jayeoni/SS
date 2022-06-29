@@ -28,7 +28,7 @@ export function WorkoutPage({ match }: RouteComponentProps<PlayParams>) {
 
     const videos = () => {
         axios
-          .post('https://smart-sports.herokuapp.com/api/videos', {
+          .post('https://smart--sports.herokuapp.com/api/videos', {
             data: {
               title: title,
               date: date,
